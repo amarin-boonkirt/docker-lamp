@@ -30,6 +30,11 @@ fi
 # enable php short tags:
 /bin/sed -i "s/short_open_tag\ \=\ Off/short_open_tag\ \=\ On/g" /etc/php/7.1/apache2/php.ini
 
+# display errors
+/bin/sed -i "s/display_errors\ \=\ Off/display_errors\ \=\ On/g" /etc/php/7.1/apache2/php.ini
+
+
+
 # custom apache config
 
 cat << EOB > /etc/apache2/sites-available/000-default.conf
