@@ -23,17 +23,23 @@ RUN apt-get install locales -y
 RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
 RUN sh -c "echo 'deb [arch=amd64,i386] https://mirrors.evowise.com/mariadb/repo/10.2/ubuntu '$(lsb_release -cs)' main' > /etc/apt/sources.list.d/MariaDB-10.2.list"
 
+RUN wget -q -O - https://packagecloud.io/gpg.key | apt-key add -
+RUN echo "deb http://packages.blackfire.io/debian any main" | tee /etc/apt/sources.list.d/blackfire.list
+
 RUN sed -i "s/#\ th_TH\.UTF-8\ UTF-8/th_TH.UTF-8\ UTF-8/g" /etc/locale.gen
 RUN sed -i "s/#\ en_US\.UTF-8\ UTF-8/en_US.UTF-8\ UTF-8/g" /etc/locale.gen
 RUN locale-gen
 
 RUN rm -f /etc/localtime && ln -s /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
 
-ENV LANG th_TH.UTF-8
+#ENV LANG th_TH.UTF-8
 #ENV LANGUAGE th_TH:th
 ENV LC_ALL th_TH.UTF-8
 
 RUN apt-get update
+
+RUN apt-get install blackfire-agent
+RUN apt-get install blackfire-php
 
 COPY debconf.selections /tmp/
 RUN debconf-set-selections /tmp/debconf.selections
@@ -89,6 +95,8 @@ RUN a2enmod rewrite
 RUN usermod -u 1000 www-data
 RUN groupmod -g 1000 www-data
 RUN usermod -g 1000 www-data
+
+RUN alias ll="ls -al"
 
 RUN mkdir /usr/share/php/rvsitebuildercms
 RUN mkdir /var/www/rvsitebuildercms
