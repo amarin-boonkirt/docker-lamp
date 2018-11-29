@@ -19,6 +19,7 @@ RUN apt-get autoremove
 
 RUN apt-get install software-properties-common perl -y
 RUN apt-get install locales -y
+RUN apt-get install wget -y
 
 RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
 RUN sh -c "echo 'deb [arch=amd64,i386] https://mirrors.evowise.com/mariadb/repo/10.2/ubuntu '$(lsb_release -cs)' main' > /etc/apt/sources.list.d/MariaDB-10.2.list"
@@ -85,7 +86,7 @@ RUN apt-get install apache2 libapache2-mod-php7.1 -y
 RUN apt-get install mariadb-server mariadb-client -y
 
 RUN apt-get install postfix -y
-RUN apt-get install git nodejs npm composer nano tree vim curl ftp wget -y
+RUN apt-get install git nodejs npm composer nano tree vim curl ftp -y
 RUN npm install -g bower grunt-cli gulp
 
 COPY index.php /var/www/html/
