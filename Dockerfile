@@ -39,8 +39,8 @@ ENV LC_ALL th_TH.UTF-8
 
 RUN apt-get update
 
-RUN apt-get install blackfire-agent
-RUN apt-get install blackfire-php
+RUN apt-get install blackfire-agent -y
+RUN apt-get install blackfire-php -y
 
 COPY debconf.selections /tmp/
 RUN debconf-set-selections /tmp/debconf.selections
