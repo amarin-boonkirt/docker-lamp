@@ -81,7 +81,8 @@ RUN apt-get install mariadb-server mariadb-client -y
 
 RUN apt-get install postfix -y
 RUN apt-get install git nodejs npm composer nano tree vim curl ftp -y
-RUN npm install -g bower grunt-cli gulp
+RUN npm install n -g && n 11.6
+RUN npm i npm@latest -g
 
 COPY index.php /var/www/html/
 COPY run-lamp.sh /usr/sbin/
