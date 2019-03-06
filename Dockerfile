@@ -104,12 +104,11 @@ RUN mkdir /var/www/storage
 RUN chmod +x /usr/sbin/run-lamp.sh
 RUN chown -R www-data:www-data /var/www
 
-RUN apt autoremove
+RUN apt autoremove; apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
 VOLUME /var/log/httpd
 VOLUME /var/lib/mysql
 VOLUME /var/log/mysql
-VOLUME /usr/share/php/rvsitebuildercms
 VOLUME /var/www
 VOLUME /var/www/html
 VOLUME /var/www/rvsitebuildercms
