@@ -99,7 +99,9 @@ RUN mkdir /var/www/storage
 RUN chmod +x /usr/sbin/run-lamp.sh
 RUN chown -R www-data:www-data /var/www
 
-RUN apt autoremove; apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+RUN apt autoremove
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
 VOLUME /var/log/httpd
 VOLUME /var/lib/mysql
