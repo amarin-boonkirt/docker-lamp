@@ -30,8 +30,6 @@ RUN locale-gen
 
 RUN rm -f /etc/localtime && ln -s /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
 
-#ENV LANG th_TH.UTF-8
-#ENV LANGUAGE th_TH:th
 ENV LC_ALL th_TH.UTF-8
 
 RUN apt-get update
@@ -80,8 +78,11 @@ RUN apt-get install apache2 libapache2-mod-php7.1 -y
 RUN apt-get install mariadb-server mariadb-client -y
 
 RUN apt-get install postfix -y
-RUN apt-get install git nodejs npm composer nano tree vim curl ftp -y
-RUN npm install n -g && n 11.6
+RUN apt-get install git composer nano tree vim curl ftp -y
+
+RUN curl -sL https://deb.nodesource.com/setup_10.x |  bash
+RUN apt-get install -y nodejs
+RUN apt-get install -y npm
 RUN npm i npm@latest -g
 
 COPY index.php /var/www/html/
