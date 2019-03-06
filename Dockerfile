@@ -78,7 +78,7 @@ RUN apt-get install apache2 libapache2-mod-php7.1 -y
 RUN apt-get install mariadb-server mariadb-client -y
 
 RUN apt-get install postfix -y
-RUN apt-get install git composer nano tree vim curl ftp -y
+RUN apt-get install git nano tree vim curl ftp -y
 
 COPY index.php /var/www/html/
 COPY run-lamp.sh /usr/sbin/
