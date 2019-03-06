@@ -115,6 +115,8 @@ service cron start
 # Run MariaDB
 #/usr/bin/mysqld_safe --timezone=${DATE_TIMEZONE}&
 
+alias ll="ls -al"
+
 # Run Apache:
 if [ $LOG_LEVEL == 'debug' ]; then
     /usr/sbin/apachectl -DFOREGROUND -k start -e debug
