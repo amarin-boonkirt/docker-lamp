@@ -80,11 +80,6 @@ RUN apt-get install mariadb-server mariadb-client -y
 RUN apt-get install postfix -y
 RUN apt-get install git composer nano tree vim curl ftp -y
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x |  bash
-RUN apt-get install -y nodejs
-RUN apt-get install -y npm
-RUN npm i npm@latest -g
-
 COPY index.php /var/www/html/
 COPY run-lamp.sh /usr/sbin/
 
